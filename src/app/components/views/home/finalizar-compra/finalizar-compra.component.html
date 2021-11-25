@@ -29,14 +29,14 @@
     <div class="pay-infos">
       <mat-form-field appearance="fill">
         <mat-label>Digite seu nome</mat-label>
-        <input matInput />
+        <input [(ngModel)]="nomeUsuario" matInput />
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Forma de pagamento</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let formaPgto of formasPagamento" value="formaPgto.tipoPagamento">{{
-            formaPgto.tipoPagamento
-          }}</mat-option>
+        <mat-select [(ngModel)]="formaPgto">
+          <mat-option *ngFor="let formaPgto of formasPagamento" [value]="formaPgto">
+            {{ formaPgto.tipoPagamento }}</mat-option
+          >
         </mat-select>
       </mat-form-field>
     </div>
@@ -45,6 +45,6 @@
   <mat-card-header class="footer-pay">
     <mat-card-title> Total: {{ valorTotal | currency: "BRL" }} </mat-card-title>
 
-    <button mat-raised-button color="primary">Finalizar compra</button>
+    <button mat-raised-button color="primary" (click)="finalizarVenda()">Finalizar compra</button>
   </mat-card-header>
 </mat-card>

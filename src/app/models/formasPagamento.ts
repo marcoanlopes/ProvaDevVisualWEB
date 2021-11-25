@@ -1,5 +1,5 @@
 export interface formasPagamento {
-  formaPagamentoId: number;
-  tipoPagamento: string;
-  descricao: string;
+  formaPagamentoId?: number;
+  tipoPagamento?: string;
+  descricao?: string;
 }
