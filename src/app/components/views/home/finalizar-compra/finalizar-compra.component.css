@@ -1,0 +1,34 @@
+table {
+    width: 50%;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.header {
+    text-align: center;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+.view-content {
+    display: flex;
+    flex-direction: row;
+}
+.pay-infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20vw;
+}
+input {
+    padding-bottom: 20px;
+}
+
+.footer-pay {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
