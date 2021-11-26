@@ -5,5 +5,6 @@ export interface Venda {
   vendaId?: number;
   cliente: string;
   formaPagamento: formasPagamento;
-  itens: ItemVenda[];
+  formaPagamentoId: number;
+  itens: any;
 }

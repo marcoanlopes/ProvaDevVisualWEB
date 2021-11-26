@@ -12,7 +12,6 @@ export class VendaService {
   constructor(private http: HttpClient) {}
 
   post(venda: Venda): Observable<Venda> {
-    console.log(venda);
     return this.http.post<Venda>(`${this.baseUrl}/create`, venda);
   }
 }

@@ -7,6 +7,12 @@ import { FormaPagamentoService } from "src/app/services/forma-pagamento.service"
 import { ItemService } from "src/app/services/item.service";
 import { VendaService } from "src/app/services/venda.service";
 
+interface itensEnvio {
+  produtoId: number;
+  quantidade: number;
+  preco: number;
+  carrinhoId: string;
+}
 @Component({
   selector: "app-finalizar-compra",
   templateUrl: "./finalizar-compra.component.html",
@@ -19,6 +25,7 @@ export class FinalizarCompraComponent implements OnInit {
   colunasExibidas: String[] = ["nome", "preco", "quantidade"];
   valorTotal!: number;
   nomeUsuario: string = "";
+  itensParaEnvio: itensEnvio[] = [];
   constructor(
     private itemService: ItemService,
     private formaPagamentoService: FormaPagamentoService,
@@ -41,18 +48,30 @@ export class FinalizarCompraComponent implements OnInit {
   }
 
   finalizarVenda() {
+    this.itens.map((data) => {
+      let item: itensEnvio = {
+        carrinhoId: data.carrinhoId,
+        preco: data.preco,
+        quantidade: data.quantidade,
+        produtoId: data.produtoId,
+      };
+
+      this.itensParaEnvio.push(item);
+    });
+
     const venda: Venda = {
       cliente: this.nomeUsuario,
+      formaPagamentoId: this.formaPgto.formaPagamentoId!,
       formaPagamento: {
         tipoPagamento: this.formaPgto.tipoPagamento,
         formaPagamentoId: this.formaPgto.formaPagamentoId,
         descricao: this.formaPgto.descricao,
       },
-      itens: this.itens,
+      itens: this.itensParaEnvio,
     };
-
+    // console.log(venda);
     this.vendaService.post(venda).subscribe(() => {
-      this.router.navigate(["produto/listar"]);
+      this.router.navigate(["home/carrinho"]);
       localStorage.removeItem("carrinhoId");
     });
   }
