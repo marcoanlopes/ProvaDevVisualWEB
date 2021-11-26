@@ -51,11 +51,9 @@ export class FinalizarCompraComponent implements OnInit {
       itens: this.itens,
     };
 
-    // console.log(this.formaPgto);
-    console.log(venda);
-
-    this.vendaService.post(venda);
-    this.router.navigate(["produto/listar"]);
-    localStorage.removeItem("carrinhoId");
+    this.vendaService.post(venda).subscribe(() => {
+      this.router.navigate(["produto/listar"]);
+      localStorage.removeItem("carrinhoId");
+    });
   }
 }
