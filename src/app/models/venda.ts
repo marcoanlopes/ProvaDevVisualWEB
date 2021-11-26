@@ -4,7 +4,7 @@ import { ItemVenda } from "./item-venda";
 export interface Venda {
   vendaId?: number;
   cliente: string;
-  formaPagamento: formasPagamento;
+  formaPagamento?: formasPagamento;
   formaPagamentoId: number;
   itens: any;
 }

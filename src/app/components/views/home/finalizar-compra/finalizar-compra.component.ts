@@ -62,14 +62,9 @@ export class FinalizarCompraComponent implements OnInit {
     const venda: Venda = {
       cliente: this.nomeUsuario,
       formaPagamentoId: this.formaPgto.formaPagamentoId!,
-      formaPagamento: {
-        tipoPagamento: this.formaPgto.tipoPagamento,
-        formaPagamentoId: this.formaPgto.formaPagamentoId,
-        descricao: this.formaPgto.descricao,
-      },
       itens: this.itensParaEnvio,
     };
-    // console.log(venda);
+
     this.vendaService.post(venda).subscribe(() => {
       this.router.navigate(["home/carrinho"]);
       localStorage.removeItem("carrinhoId");
